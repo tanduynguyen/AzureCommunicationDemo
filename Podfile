@@ -1,0 +1,96 @@
+platform :ios, '14.0'
+
+workspace 'AzureCommunicationUI'
+
+project 'sdk/AzureCommunicationUICalling/AzureCommunicationUICalling.xcodeproj'
+project 'sdk/AzureCommunicationUICalling/AzureCommunicationUIChat.xcodeproj'
+project 'AzureCommunicationUIDemoApp/AzureCommunicationUIDemoApp.xcodeproj'
+
+target 'AzureCommunicationUICalling' do
+  project 'sdk/AzureCommunicationUICalling/AzureCommunicationUICalling.xcodeproj'
+  use_frameworks!
+  pod 'AzureCommunicationCalling', '2.2.1'
+  pod 'MicrosoftFluentUI/Avatar_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/BottomSheet_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/Button_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/PopupMenu_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/ActivityIndicator_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/AvatarGroup_ios', '0.10.0'
+  pod 'SwiftLint', '0.42.0'
+
+  target 'AzureCommunicationUICallingTests' do
+    # Pods for testing
+    pod 'SwiftLint', '0.42.0'
+  end
+end
+
+target 'AzureCommunicationUIChat' do
+  project 'sdk/AzureCommunicationUIChat/AzureCommunicationUIChat.xcodeproj'
+  use_frameworks!
+  pod 'AzureCommunicationChat', '1.3.1'
+  pod 'MicrosoftFluentUI/Avatar_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/BottomSheet_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/Button_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/PopupMenu_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/ActivityIndicator_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/AvatarGroup_ios', '0.10.0'
+  pod 'SwiftLint', '0.42.0'
+
+  target 'AzureCommunicationUIChatTests' do
+    # Pods for testing
+    pod 'SwiftLint', '0.42.0'
+  end
+end
+
+target 'AzureCommunicationUIDemoApp' do
+  project 'AzureCommunicationUIDemoApp/AzureCommunicationUIDemoApp.xcodeproj'
+  use_frameworks!
+  pod 'AzureCommunicationCalling', '2.2.1'
+  pod 'AzureCommunicationChat', '1.3.1'
+  pod 'MicrosoftFluentUI/Avatar_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/BottomSheet_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/Button_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/PopupMenu_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/ActivityIndicator_ios', '0.10.0'
+  pod 'MicrosoftFluentUI/AvatarGroup_ios', '0.10.0'
+  pod 'SwiftLint', '0.42.0'
+  pod 'AppCenter/Crashes', '4.4.1'
+  
+  target 'AzureCommunicationUIDemoAppUITests' do
+    # Pods for testing
+    pod 'SwiftLint', '0.42.0'
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == 'SwiftLint'
+      target.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+      end
+    end
+
+    # Get main project development team id
+    dev_team = ""
+    project = installer.aggregate_targets[0].user_project
+    project.targets.each do |target|
+       target.build_configurations.each do |config|
+           if dev_team.empty? and !config.build_settings['DEVELOPMENT_TEAM'].nil?
+               dev_team = config.build_settings['DEVELOPMENT_TEAM']
+           end
+       end
+    end
+
+    # Fix bundle targets' 'Signing Certificate' to 'Sign to Run Locally'
+    installer.pods_project.targets.each do |target|
+       if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+           target.build_configurations.each do |config|
+               config.build_settings['DEVELOPMENT_TEAM'] = dev_team
+           end
+       end
+end
+    target.build_configurations.each do |config|
+        config.build_settings['ENABLE_BITCODE'] = 'NO'
+    end
+  end
+end
