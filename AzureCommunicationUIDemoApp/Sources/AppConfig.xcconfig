@@ -3,3 +3,19 @@
 //  Licensed under the MIT License.
 //
 #include? "EnvConfig.xcconfig"
+
+acsToken = eyJhbGciOiJSUzI1NiIsImtpZCI6IjVFODQ4MjE0Qzc3MDczQUU1QzJCREU1Q0NENTQ0ODlEREYyQzRDODQiLCJ4NXQiOiJYb1NDRk1kd2M2NWNLOTVjelZSSW5kOHNUSVEiLCJ0eXAiOiJKV1QifQ.eyJza3lwZWlkIjoiYWNzOmUwMTU3NTU2LWFiMTgtNGEwZi05OTIwLTM2Y2NkN2NjNDQwNl8wMDAwMDAxOS0xMTBkLTBhMmYtMjhjNS01OTNhMGQwMDc1ZGEiLCJzY3AiOjE3OTIsImNzaSI6IjE2ODU1MjU4NDkiLCJleHAiOjE2ODU2MTIyNDksInJnbiI6ImFtZXIiLCJhY3NTY29wZSI6ImNoYXQsdm9pcCIsInJlc291cmNlSWQiOiJlMDE1NzU1Ni1hYjE4LTRhMGYtOTkyMC0zNmNjZDdjYzQ0MDYiLCJyZXNvdXJjZUxvY2F0aW9uIjoidW5pdGVkc3RhdGVzIiwiaWF0IjoxNjg1NTI1ODQ5fQ.Q0rV3IkncQwGKQH-yiqtzLSJpQexFYp-S8UxWcm7fV1W3j6ZTDZOuJfxgx_ZwztOUgFvfLuV5Y1S-L-7xxhbPuSGPQwDYMkpD-43RtelgPMpUqpYLHM6WN5XNlgyLndsh209nK9wefwLYq7u2Gx1vHRnwCOi3VqCjl6_tZn6mSIUCD9RiHyKlxe3v6w_x9C8JjYiKNDOPR0aWp34xZ6lCwHcHi75m-pNU-0gSuqJvtyXktojynJRM20s-YjBoCfN9GQQUUodZrfx3kmnC569gi42cI5RMvFvuwx4NB_aCYArNJK2e-HDGvviukM6ZyqjZkR6_fcP92fn5a_mBiKgKA
+
+acsTokenUrl = endpoint=https:/$()/2359media.communication.azure.com/;accesskey=uRlL9TQyblL2wVl3FYX5OZo/MzGQrWu48qjVoG38VrdfzlXmounFUFZ8ktwqWSZxdrYGcayMMASw0UrgBQIX+w==
+displayName = DuyNguyen
+
+// for Chat:
+userId = 8:acs:e0157556-ab18-4a0f-9920-36ccd7cc4406_00000019-110d-0a2f-28c5-593a0d0075da
+threadId = 19:3caef9fd1fdb488e8eaeba349dedbc0b@thread.v2
+endpointUrl = https:/$()/2359media.communication.azure.com
+
+// for Calling:
+//expiredAcsToken: an expired Azure Communication Services token for UI testing
+//groupCallId: this a type of UUID used to start and join a meeting for Calling
+//teamsMeetingLink: the URL to a Teams meeting (You must use https:/$()/ in the format of URL) for Calling
+//aadToken: the AAD token for Calling
