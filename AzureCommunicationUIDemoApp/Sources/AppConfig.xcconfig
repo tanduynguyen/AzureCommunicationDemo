@@ -17,5 +17,5 @@ endpointUrl = https:/$()/2359media.communication.azure.com
 // for Calling:
 //expiredAcsToken: an expired Azure Communication Services token for UI testing
 //groupCallId: this a type of UUID used to start and join a meeting for Calling
-//teamsMeetingLink: the URL to a Teams meeting (You must use https:/$()/ in the format of URL) for Calling
+teamsMeetingLink = https:/$()/teams.live.com/meet/9540861988031
 //aadToken: the AAD token for Calling
